@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Simple Conversion Calculator</title>
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor"
+      crossorigin="anonymous"
+    />
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+      crossorigin="anonymous"
+    ></script>
+    <style>
+      body {
+        background-color: beige;
+      }
+      section {
+        border-radius: 20px;
+        margin: 50px 70px;
+        padding: 70px 100px;
+        background-color: rgb(70, 70, 218);
+        box-shadow: 5px 5px 5px 5px #0009;
+      }
+      /* .myform {
+        display: flex;
+        justify-content: space-around;
+      }
+      .mytexttitle {
+        text-align: center;
+        color: white;
+        font-family: poppins;
+        font-size: 40px;
+        padding-bottom: 30px;
+      }
+      label {
+        color: white;
+        font-family: poppins;
+        font-weight: bold;
+        margin-right: 5px;
+        letter-spacing: 2px;
+      }
+      h4 {
+        font-family: poppins;
+        color: white;
+        letter-spacing: 2px;
+      }
+
+      input {
+        padding: 20px 20px;
+        border-radius: 20px;
+        border: inset;
+        font-family: poppins;
+        color: black;
+        font-weight: bold;
+      } */
+    </style>
+  </head>
+  <body>
+    <section class="container">
+      <h1 class="mytexttitle text-center pb-5 text-light">Speed</h1>
+      <form
+        action="#"
+        class="myform container d-flex flex-column flex-md-row justify-content-center"
+      >
+        <div class="mx-3">
+          <label for="mph" class="form-label text-light">MPH</label>
+          <input
+            class="form-control"
+            id="inputMPH"
+            type="number"
+            placeholder="MPH"
+            oninput="return mphTokph(this.value)"
+            onchange="return mphTokph(this.value)"
+          />
+          <h4 class="fs-5 my-2 text-light">
+            KPH: <span id="outputKPH"></span>
+          </h4>
+        </div>
+        <br />
+        <div class="convert mx-3">
+          <label for="kph" class="form-label text-light">KPH</label>
+          <input
+            class="form-control"
+            type="number"
+            id="inputKPH"
+            placeholder="KPH"
+            oninput="return kphTomph(this.value)"
+            onchange="return kphTomph(this.value)"
+          />
+          <h4 class="fs-5 my-2 text-light">
+            MPH: <span id="outputMPH"></span>
+          </h4>
+        </div>
+        <br />
+        <div class="mx-3">
+          <label for="mps" class="form-label text-light">MPS</label>
+          <input
+            class="form-control"
+            type="number"
+            id="inputMPS"
+            placeholder="MPS"
+            oninput="mpsTomph(this.value)"
+            onchange="mpsTomph(this.value)"
+          />
+          <h4 class="fs-5 my-2 text-light">
+            MPH: <span id="outputMPS"></span>
+          </h4>
+          <h4 class="fs-5 my-2 text-light">
+            KPH: <span id="outputMPS2"></span>
+          </h4>
+        </div>
+      </form>
+    </section>
+
+    <section class="container">
+      <h1 class="mytexttitle text-center text-light pb-5">Weight</h1>
+      <form
+        action="#"
+        class="myform container d-flex flex-column flex-md-row justify-content-center"
+      >
+        <div class="mx-3">
+          <label for="kg" class="form-label text-light"
+            >Milligram to Kilogram</label
+          >
+          <input
+            class="form-control"
+            type="number"
+            id="mg to kg"
+            placeholder="Mg to Kg"
+            oninput="MgToKg(this.value)"
+            onchange="MgToKg(this.value)"
+          />
+          <h4 class="fs-5 my-2 text-light">KG: <span id="outputKg"></span></h4>
+        </div>
+        <br />
+        <div>
+          <label for="mg" class="form-label text-light"
+            >Kilogram to Milligram</label
+          >
+          <input
+            class="form-control"
+            type="number"
+            id="kg to mg"
+            placeholder="Kg to Mg"
+            oninput="KgToMg(this.value)"
+            onchange="KgToMg(this.value)"
+          />
+          <h4 class="fs-5 my-2 text-light">MG:<span id="outputMg"></span></h4>
+        </div>
+      </form>
+    </section>
+
+    <script>
+      function mphTokph(valNum) {
+        valNum = parseFloat(valNum);
+        if (isNaN(valNum)) valNum = "";
+        document.getElementById("outputKPH").innerHTML = valNum * 1.609344;
+      }
+
+      function kphTomph(valNum) {
+        valNum = parseFloat(valNum);
+        if (isNaN(valNum)) valNum = "";
+        document.getElementById("outputMPH").innerHTML = valNum * 0.621371;
+      }
+      function mpsTomph(valNum) {
+        valNum = parseFloat(valNum);
+        if (isNaN(valNum)) valNum = "";
+        document.getElementById("outputMPS").innerHTML = valNum * 2.23694;
+        document.getElementById("outputMPS2").innerHTML =
+          valNum * 3.6000059687997;
+      }
+      // Mg to Kg
+
+      function MgToKg(valNum) {
+        valNum = parseFloat(valNum);
+        if (isNaN(valNum)) valNum = "";
+        document.getElementById("outputKg").innerHTML = valNum * 0.001;
+      }
+      // Kg to Mg
+      function KgToMg(valNum) {
+        valNum = parseFloat(valNum);
+        if (isNaN(valNum)) valNum = "";
+        document.getElementById("outputMg").innerHTML = valNum * 1000;
+      }
+    </script>
+  </body>
+</html>
